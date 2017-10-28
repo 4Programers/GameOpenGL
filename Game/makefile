@@ -1,10 +1,22 @@
 PROGRAM = game
 CC = gcc
 CFLAGS = -Wall -Wno-unused-variable
-LDLIBS  = -lglut -lGLU -lGL
+LDLIBS  = -lglut -lGLU -lGL -lm
 
-$(PROGRAM) : main.o callback.o 
+$(PROGRAM) : main.o callback.o init.o objects.o draw.o timer.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+timer.o : timer.c timer.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+draw.o : draw.c draw.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+objects.o : objects.c objects.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+init.o : init.c init.h
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 callback.o : callback.c callback.h	
 	$(CC) $(CFLAGS) -c -o $@ $<

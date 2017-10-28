@@ -1,5 +1,6 @@
 #include<GL/glut.h>
 #include "callback.h"
+#include "init.h"
 
 int main(int argc,char** argv){
 
@@ -13,9 +14,15 @@ int main(int argc,char** argv){
 	glutKeyboardFunc(onKeyboard);
 	glutReshapeFunc(onReshape);
 	glutDisplayFunc(onDisplay);
+	glutMouseFunc(onMouseClick);
+	glutPassiveMotionFunc(onMouseMove);
+
+	glutSetCursor(GLUT_CURSOR_NONE);
 
 	glClearColor(0.5,0.5,0.5,0);
 	glEnable(GL_DEPTH_TEST);
+
+	startGame();
 
 	glutMainLoop();
 
