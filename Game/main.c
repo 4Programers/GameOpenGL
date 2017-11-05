@@ -22,7 +22,7 @@ int main(int argc,char** argv){
 	glClearColor(0.5,0.5,0.5,0);
 	glEnable(GL_DEPTH_TEST);
 
-	startGame();
+	startGame();  
 
 	glutMainLoop();
 

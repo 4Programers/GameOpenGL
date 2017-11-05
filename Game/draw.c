@@ -3,6 +3,9 @@
 #include<math.h>
 #include "draw.h"
 #include "timer.h"
+#include <stdlib.h>
+
+
 
 
 void drawAll(){
@@ -10,8 +13,10 @@ void drawAll(){
 	basicDraw();
 	if(fire_active)
 		fire();
+	if(imp_active){
+		draw_imp();
+	}
 }
-
 
 void basicDraw(){
 
@@ -64,18 +69,43 @@ void rotatePlane(int timer_id){
 }
 
 void fire(){
+	if(bullets.in_live){
 
-	glPushMatrix();
-				glColor3f(1,0,0);
-				glTranslatef(plane.x_pos, plane.y_pos, bullets.z_pos + 1);
-				glutSolidSphere(0.02,50,20);
-	glPopMatrix();
+		
 
 
-	glutPostRedisplay();
+		glPushMatrix();
+					glColor3f(1,0,0);
+					glTranslatef(plane.x_pos, plane.y_pos, bullets.z_pos);
+					glutSolidSphere(0.02,50,20);
+		glPopMatrix();
 
-	glutTimerFunc(100,moveBullets,1);
+
+		glutPostRedisplay();
+			
+
+	}
+
 }
+
+void draw_imp(){
+
+	if(impediments.in_live){		
+			//printf("%lf %lf",impediments.x_pos , impediments.dim);
+			glPushMatrix();
+					glColor3f(0,0,0);
+					glTranslatef(impediments.x_pos,impediments.y_pos,impediments.z_pos);
+					glutSolidCube(impediments.dim);
+			glPopMatrix();
+
+
+	
+			glutPostRedisplay();
+
+		}
+}
+
+
 
 
 

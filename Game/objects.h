@@ -1,5 +1,5 @@
 #ifndef _OBJECTS_H_
-#define _OBJECTS_H
+#define _OBJECTS_H_
 
 struct _Plane{
 
@@ -18,7 +18,6 @@ struct _Plane{
 };
 
 struct _Bullet{
-
 	double x_pos;
 	double y_pos;
 	double z_pos;
@@ -27,8 +26,18 @@ struct _Bullet{
 	
 };
 
+struct _Impediment{
+	double x_pos;
+	double y_pos;
+	double z_pos;
+	
+	double dim;
+	int in_live ;
+};
+
 typedef struct _Plane Plane;
 typedef struct _Bullet Bullet;
+typedef struct _Impediment Impediment;
 void rotatePlane();
 
 
