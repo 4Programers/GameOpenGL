@@ -3,7 +3,6 @@
 
 void drawAll();
 void basicDraw();
-void rotatePlane(int timer_id);
 void fire();
 void draw_imp();
 

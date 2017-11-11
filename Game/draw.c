@@ -9,23 +9,29 @@
 
 
 void drawAll(){
-	
-	basicDraw();
-	if(fire_active)
-		fire();
-	if(imp_active){
-		draw_imp();
+
+	if(init_done){
+
+			basicDraw();
+
+			if(fire_active)
+				fire();
+
+			if(imp_active)
+				draw_imp();
+			
 	}
+
 }
 
 void basicDraw(){
 
-	if(init_done){
+	
 		
-		glColor3f(plane.red, plane.green, plane.blue);
+		glColor3f(plane->red, plane->green, plane->blue);
 		glPushMatrix();
-			glTranslatef(plane.x_pos,plane.y_pos,plane.z_pos);
-			glRotatef(sin(plane.z_rotate)*30,0,0,1);
+			glTranslatef(plane->x_pos,plane->y_pos,plane->z_pos);
+			glRotatef(sin(plane->z_rotate)*30,0,0,1);
 
 			glPushMatrix();
 				glTranslatef(0, 0, 1);
@@ -49,34 +55,21 @@ void basicDraw(){
 
 		glutPostRedisplay();
 
-	}
+	
 
 }
 
 
-void rotatePlane(int timer_id){
-
-	if(timer_id != 1)
-		return;
-
-	if(plane.z_rotate <= 360 )	
-		plane.z_rotate += 0.1;
-	else
-		plane.z_rotate = 0;
-
-	glutTimerFunc(100,rotatePlane,1);
-
-}
 
 void fire(){
-	if(bullets.in_live){
+	if(bullets->in_live){
 
 		
 
 
 		glPushMatrix();
 					glColor3f(1,0,0);
-					glTranslatef(plane.x_pos, plane.y_pos, bullets.z_pos);
+					glTranslatef(plane->x_pos, plane->y_pos, bullets->z_pos);
 					glutSolidSphere(0.02,50,20);
 		glPopMatrix();
 
@@ -90,12 +83,12 @@ void fire(){
 
 void draw_imp(){
 
-	if(impediments.in_live){		
-			//printf("%lf %lf",impediments.x_pos , impediments.dim);
+	if(impediments->in_live){		
+		
 			glPushMatrix();
-					glColor3f(0,0,0);
-					glTranslatef(impediments.x_pos,impediments.y_pos,impediments.z_pos);
-					glutSolidCube(impediments.dim);
+					glColor3f(0,0,1);
+					glTranslatef(impediments->x_pos,impediments->y_pos,impediments->z_pos);
+					glutSolidCube(impediments->dim);
 			glPopMatrix();
 
 

@@ -3,8 +3,11 @@ CC = gcc
 CFLAGS = -Wall -Wno-unused-variable
 LDLIBS  = -lglut -lGLU -lGL -lm
 
-$(PROGRAM) : main.o callback.o init.o objects.o draw.o timer.o
+$(PROGRAM) : main.o callback.o init.o objects.o draw.o timer.o allocation.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+allocation.o : allocation.c allocation.h
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 timer.o : timer.c timer.h
 	$(CC) $(CFLAGS) -c -o $@ $<

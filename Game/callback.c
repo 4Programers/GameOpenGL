@@ -39,26 +39,23 @@ void onDisplay(){
 
 
 void onKeyboard(unsigned char c , int x, int y){
-
+	
 	switch(c){
 
 		case 'd' : 
-				if(plane.x_pos < 0.6)
-					plane.x_pos += 0.01;break;
+				if(plane->x_pos < 0.6)
+					plane->x_pos += 0.01;break;
 		case 'a' : 
-				if(plane.x_pos > -0.6 )
-					plane.x_pos -= 0.01;break;
+				if(plane->x_pos > -0.6 )
+					plane->x_pos -= 0.01;break;
 	
 		case 'q' : exit(0);break;
 		case 'p' : {	
 			   if(!imp_active){	
-				/*impediments.x_pos = random_float(-1,1);		
-				impediments.y_pos = 0;
-				impediments.z_pos = -5;*/
-				impediments.in_live = 1;		
-				imp_active = 1;
-				//impediments.dim = random_float(0.02,0.3);				
-				glutTimerFunc(100,moveImpediments,1);
+
+					impediments->in_live = 1;		
+					imp_active = 1;			
+					glutTimerFunc(100,moveImpediments,1);
 			 	}
 			 };break;
 		
@@ -79,7 +76,7 @@ void onMouseClick(int button, int state, int x, int y){
 
 	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 		if(!fire_active){
-				bullets.in_live = 1;
+				bullets->in_live = 1;
 				fire_active = 1 ;
 				glutTimerFunc(100,moveBullets,1);
 			}
